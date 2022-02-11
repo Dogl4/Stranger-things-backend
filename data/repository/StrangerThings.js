@@ -17,7 +17,6 @@ class StrangerThingsRepository {
 
   search(params, pagination) {
     const { page = 1, size = 10 } = pagination;
-
     const offset = (page - 1) * size;
 
     return this.dataset.filter(makeFilterFn(params)).splice(offset, size);

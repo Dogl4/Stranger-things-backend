@@ -17,15 +17,15 @@ const strangerThingsService = new StrangerThingsService(
 
 app.use(cors());
 
-const UPSIDEDOWN_MODE = process.env.UPSIDEDOWN_MODE || true;
+// UPSIDEDOWN_MODE vem como string, ::___::
+const UPSIDEDOWN_MODE = (process.env.UPSIDEDOWN_MODE === 'true');
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   const characters = strangerThingsService.search(
     req.query,
     UPSIDEDOWN_MODE,
   );
-
   res.status(200).json(characters);
 });
 
